@@ -37,7 +37,7 @@ app.use('/api/users', userRouter);
 app.use('/api/projects', validateJWT, projectRouter);
 app.use('/api/tasks', validateJWT, taskRouter);
 
-const { port, mongoDB } = settings();
+const { port, mongoDB, database } = settings();
 
 io.on('connection', (socket) => {
   socket.on('updating-tasks', async ({ projectId }) => {
@@ -64,5 +64,5 @@ io.on('connection', (socket) => {
 
 server.listen(port, () => {
   console.log(`Server on port ${port}`);
-  connectDB(mongoDB);
+  connectDB(mongoDB, database);
 });
