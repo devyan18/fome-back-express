@@ -14,6 +14,7 @@ import { taskRouter } from './modules/projects/task.controller.js';
 import { getAllTaskByProject } from './modules/projects/task.service.js';
 import { getAllProjects } from './modules/projects/project.service.js';
 import { validateJWT } from './middlewares/validate-jwt.js';
+import { authRouter } from './modules/auth/auth.controller.js';
 
 const app = express();
 const server = createServer(app);
@@ -34,6 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/users', userRouter);
+app.use('/api/auth', authRouter);
 app.use('/api/projects', validateJWT, projectRouter);
 app.use('/api/tasks', validateJWT, taskRouter);
 

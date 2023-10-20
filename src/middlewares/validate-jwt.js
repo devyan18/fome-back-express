@@ -17,7 +17,7 @@ export const validateJWT = async (req, res, next) => {
 
     const user = await getUserById(id);
 
-    if (user) {
+    if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 

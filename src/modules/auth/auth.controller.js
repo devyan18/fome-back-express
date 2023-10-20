@@ -7,7 +7,7 @@ import { validateJWT } from '../../middlewares/validate-jwt.js';
 
 const authRouter = Router();
 
-authRouter.get('/', validateJWT, (req, res) => {
+authRouter.post('/', validateJWT, (req, res) => {
   res.status(200).json({ user: req.user });
 });
 
@@ -46,3 +46,5 @@ authRouter.post('/register', validations.register, async (req, res) => {
     res.status(500).json({ message: 'Error register user' });
   }
 });
+
+export { authRouter };
